@@ -276,11 +276,11 @@ class Http
      */
     private function shouldLogApiDeprecation(): bool
     {
+        return false;
         if (function_exists('apcu_enabled') && apcu_enabled()) {
             $apcuKey = 'shopify/shopify-api/last-api-deprecation-warning';
         } else {
-            // If APCu is not available, we can't reliably rate-limit the warnings across
-            return false;
+            $apcuKey = null;
         }
 
         if ($this->lastApiDeprecationWarning === 0 && $apcuKey) {

@@ -302,6 +302,7 @@ class Context
      */
     public static function logDeprecation(string $deprecatedFrom, string $message, array $context = []): void
     {
+        return;
         if (!preg_match('#^\d+.\d+.\d+$#', $deprecatedFrom)) {
             throw new Exception(sprintf('Encountered an invalid version: "%s"', $deprecatedFrom));
         }
