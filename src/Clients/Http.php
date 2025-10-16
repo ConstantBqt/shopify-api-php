@@ -279,7 +279,8 @@ class Http
         if (function_exists('apcu_enabled') && apcu_enabled()) {
             $apcuKey = 'shopify/shopify-api/last-api-deprecation-warning';
         } else {
-            $apcuKey = null;
+            // If APCu is not available, we can't reliably rate-limit the warnings across
+            return false;
         }
 
         if ($this->lastApiDeprecationWarning === 0 && $apcuKey) {
